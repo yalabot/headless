@@ -33,6 +33,7 @@ class Headless
       # make a guess based upon the provider.
       @provider_binary_path = options.fetch(:provider_binary_path, guess_the_provider_binary_path)
 
+      @x11grab_options = Array(options.fetch(:x11grab_options, []))
       @extra = Array(options.fetch(:extra, []))
       @devices = Array(options.fetch(:devices, []))
 
@@ -95,6 +96,7 @@ class Headless
          "-r #{@frame_rate}",
          "-s #{dimensions}",
          "-f x11grab",
+         @x11grab_options,
          "-i :#{@display}",
          @devices,
          group_of_pic_size_option,
